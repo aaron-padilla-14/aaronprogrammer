@@ -1,0 +1,26 @@
+
+<link rel="stylesheet" href="style.scss">
+<link rel="stylesheet" href="style.css">
+<meta http-equiv="Refresh" content="5;url=conocimientos">
+<div class="circle borderOpacity">
+    <span class="percent-container">
+        <span class="percent-value">0</span><sup class="percent">%</sup>
+    </span>
+    <div class="inner startLoading innerOpacity">
+
+    </div>
+</div>
+
+<script>
+    const percentValue = document.querySelector(".percent-value");
+var percent = 0;
+var loop = setInterval(() => {
+    if (percent != 100) {
+        percent++
+        percentValue.innerText = percent;
+    } else {
+        clearInterval(loop);
+    }
+}, 38)
+</script>
+

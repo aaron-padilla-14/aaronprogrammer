@@ -1,0 +1,186 @@
+<link rel="stylesheet" href="sass/style.scss">
+<link rel="stylesheet" href="sass/style.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aaron Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.min.js"></script>
+</head>
+<header>
+<center> 
+       <h2>Aaron Padilla Somarribas </h2>
+</center>
+</header>
+<body>
+<center>  <!-- letras mauqina escribir--  <span class="entry"></span> --> </center>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.7/typed.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', 
+    function(){
+      Typed.new('.entry', {
+        strings: ["Computer Professional", "I am passionate about what I do", " I always seek to perfect my work giving the best results", "Welcome Hack ;)"],
+        typeSpeed: 2
+      });
+  });
+</script>
+
+<div id="app" class="container">
+    <card data-image="https://www.aulacreactiva.com/wp-content/uploads/2020/09/IMG-1-diseno-web.jpg">
+      <h1 slot="header">Web designer</h1>
+      <p slot="content">He is the one in charge of the visual identity, coherence and graphic consistency of the website, prioritizing communication and a responsive user interface; selecting the elements that compose it and coding the designs in HTML, CSS and JS languages.
+      <br>
+        <a href="../DEVELOPER/index.html" class="btn">Go to Direction &rAarr;</a>
+        
+      </p>
+    </card>
+    <card data-image="https://images2.alphacoders.com/690/thumb-1920-690857.jpg">
+      <h1 slot="header">Logo Design</h1>
+      <p slot="content" style="background-color: rgba(0, 0, 0, 0.693);">Logo designers are professional
+         graphic designers who create custom images unique to the brand of the client or company that hires
+          them. Most professional graphic designers have a background in marketing and advertising.
+          <br>
+          <a href="../logos/index.html" class="btn">Go to Direction &rAarr;</a> </p></p>
+    </card>
+    <card data-image="https://www.sccenlared.es/wp-content/uploads/2019/06/evolucion-redes-wan-627x376.jpg">
+      <h1 slot="header">Cisco Networks</h1>
+      <p slot="content">Cisco certifications are recognized globally as an industry 
+        standard for network design and support, ensuring high levels of expertise and
+         reliability.  Its line of courses ranges from the most basic network technology to specialized areas
+         <br>
+        <a href="../CISCO-NETWORK/index.html" class="btn">Go to Direction &rAarr;</a> </p>
+    
+    </card>
+    
+    <card data-image="https://i.pinimg.com/originals/03/de/37/03de37002736cc89b636292b195e5cf6.jpg">
+      <h1 slot="header">Ciber Security</h1>
+      <p slot="content">The installation of computer programs (software) is the fundamental process by 
+        which new programs are transferred to a computer in order to be configured, and prepared to be developed.
+        <br>
+        <a href="#" class="btn">Go to Direction &rAarr;</a>
+      </p>
+    </card>
+    
+      <card data-image="https://repository-images.githubusercontent.com/249722207/66155e00-70fb-11ea-817b-c1bb1883582c">
+      <h1 slot="header">Front - End</h1>
+      <p slot="content">In addition, it stands out for its functional feature, as it serves for the user to enter and interact with any site. Reason why it must comply with high standards of usability and aesthetics.
+        <br>
+        <a href="../front-end/index.html" class="btn">Go to Direction &rAarr;</a> </p>
+      </p>
+    </card>
+      <card data-image="https://t4.ftcdn.net/jpg/03/15/02/27/360_F_315022751_vg1XCkEIsspb0LIP8bCwUKVhINP69wOv.jpg">
+      <h1 slot="header">Back - End</h1>
+      <p slot="content">A backend developer is responsible for designing the logic and solutions so that all the actions requested on a web page are executed correctly. It works on the server side and processes the information received through the frontend.   
+        
+        <br>
+        <a href="#" class="btn">Go to Direction &rAarr;</a> </p></p>
+    </card>
+  </div>
+  
+  <h1 class="title">&copy; Specialist of the Informatic. &trade;</h1>
+  
+  
+  
+
+  
+  
+  <!-- sm btns -->
+  <a href="https://github.com/aaron-padilla-14"><button class="twitter-btn"><i class="fab fa-github"></i></button></a>
+  
+  <a href="https://www.linkedin.com/in/aaron-padilla-36665321a/"><button class="in-btn"><i class="fab fa-linkedin-in"></i></button></a>
+
+  <script>
+
+Vue.config.devtools = true;
+
+Vue.component("card", {
+  template: `
+    <div class="card-wrap"
+      @mousemove="handleMouseMove"
+      @mouseenter="handleMouseEnter"
+      @mouseleave="handleMouseLeave"
+      ref="card">
+      <div class="card"
+        :style="cardStyle">
+        <div class="card-bg" :style="[cardBgTransform, cardBgImage]"></div>
+        <div class="card-info">
+          <slot name="header"></slot>
+          <slot name="content"></slot>
+        </div>
+      </div>
+    </div>`,
+  mounted() {
+    this.width = this.$refs.card.offsetWidth;
+    this.height = this.$refs.card.offsetHeight;
+  },
+  props: ["dataImage"],
+  data: () => ({
+    width: 0,
+    height: 0,
+    mouseX: 0,
+    mouseY: 0,
+    mouseLeaveDelay: null
+  }),
+
+  computed: {
+    mousePX() {
+      return this.mouseX / this.width;
+    },
+    mousePY() {
+      return this.mouseY / this.height;
+    },
+    cardStyle() {
+      const rX = this.mousePX * 30;
+      const rY = this.mousePY * -30;
+      return {
+        transform: `rotateY(${rX}deg) rotateX(${rY}deg)`
+      };
+    },
+    cardBgTransform() {
+      const tX = this.mousePX * -40;
+      const tY = this.mousePY * -40;
+      return {
+        transform: `translateX(${tX}px) translateY(${tY}px)`
+      };
+    },
+    cardBgImage() {
+      return {
+        backgroundImage: `url(${this.dataImage})`
+      };
+    }
+  },
+
+  methods: {
+    handleMouseMove(e) {
+      this.mouseX = e.pageX - this.$refs.card.offsetLeft - this.width / 2;
+      this.mouseY = e.pageY - this.$refs.card.offsetTop - this.height / 2;
+    },
+    handleMouseEnter() {
+      clearTimeout(this.mouseLeaveDelay);
+    },
+    handleMouseLeave() {
+      this.mouseLeaveDelay = setTimeout(() => {
+        this.mouseX = 0;
+        this.mouseY = 0;
+      }, 1000);
+    }
+  }
+});
+
+const app = new Vue({
+  el: "#app"
+});
+  </script>
+
+<div class="callout">
+  <div class="callout-header">&copy; Portfolio - Aaron  &trade; </div>
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">×</span>
+  <div class="callout-container">
+    <p> <span class="entry"></span></center>.</p>
+  </div>
+</div>
+</body>
+</html>
